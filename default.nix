@@ -1,6 +1,8 @@
-{ stdenv, lib, lua, python3Full, openblas } :
+{ stdenv, lib, lua, python3Full, openblas } : let
 
-stdenv.mkDerivation {
+  openblas-single-thread = openblas.override { singleThreaded = true; };
+
+in stdenv.mkDerivation {
 
   pname = "s4";
   version = "1.1";
@@ -18,7 +20,7 @@ stdenv.mkDerivation {
     cp build/S4 $out/bin
   '';
 
-  buildInputs = [ lua python3Full openblas ];
+  buildInputs = [ lua python3Full openblas-single-thread ];
 
   meta = with lib; {
     description = "Stanford Stratified Structure Solver - Electromagnetic simulator for layered periodic structures";
