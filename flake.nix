@@ -23,8 +23,8 @@
 
       in {
 
-        defaultPackage = pkgs.s4;
-        defaultApp = {
+        packages.default = pkgs.s4;
+        apps.default = {
           type = "app";
           program = "${pkgs.s4}/bin/S4";
         };
